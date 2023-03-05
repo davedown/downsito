@@ -1,0 +1,65 @@
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Player = game.Players.localPlayer
+local Window = OrionLib:MakeWindow({Name = "Key system", HidePremium = false, SaveConfig = true, IntroEnable = false})
+
+OrionLib:MakeNotification({
+	Name = "Logged In",
+	Content = "you are logged in as "..Player.Name.." ",
+	Image = "rbxassetid://4483345998",
+	Time = 5
+})
+
+_G.Key = "DownGang"
+_G.KeyInput = "string"
+
+function MakeScriptHub()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/davedown/Down-V2/main/DownHub",true))();
+end
+
+function CorrectKeyNotification()
+    OrionLib:MakeNotification({
+        Name = "CorrectKey",
+        Content = "You entered the correct key",
+        Image = "rbxassetid://4483345998",
+        Time = 5
+    })
+end
+
+
+function IncorrectKeyNotification()
+    OrionLib:MakeNotification({
+        Name = "incorrectKey",
+        Content = "You entered the incorrect key ): ",
+        Image = "rbxassetid://4483345998",
+        Time = 5
+    })
+end
+
+
+local Tab = Window:MakeTab({
+	Name = "Key",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+
+Tab:AddTextbox({
+	Name = "pon la key brothi",
+	Default = "Pon la key brothi",
+	TextDisappear = true,
+	Callback = function(Value)
+		_G.KeyInput = Value
+	end	  
+})
+
+Tab:AddButton({
+	Name = "Check Key",
+	Callback = function()
+         if _G.KeyInput == _G.Key then
+        MakeScriptHub()
+        CorrectKeyNotification()
+         else
+            IncorrectKeyNotification()
+         end
+  	end    
+})
